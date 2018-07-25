@@ -13,20 +13,21 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\Course::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => Hash::make($faker->password),
-        'address' => $faker->address,
-        'avatar' => $faker->image(
-            $dir = config('view.image') . '/avatar',
+        'name' => $faker->colorName,
+        'course_avatar' => $faker->image(
+            $dir = config('view.image') . '/course_avatar',
             $width = 640,
             $height = 480
         ),
-        'working_place' => $faker->company,
-        'grade' => rand(1, 12),
-        'role' => rand(0, 2),
-        'remember_token' => str_random(10),
+        'slide_image' => $faker->image(
+            $dir = config('view.image') . '/slide_image',
+            $width = 64,
+            $height = 48
+        ),
+        'description' => $faker->text,
+        'course_rate' => rand(1, 5),
+        'category_id' => \App\Models\Category::all()->random()->id,
     ];
 });
