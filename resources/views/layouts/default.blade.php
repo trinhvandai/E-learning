@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     @include('layouts.head')
+    @yield('inline_styles')
     <body>
         @include('layouts.header')
         <!--Content-->

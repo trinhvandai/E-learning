@@ -12,14 +12,33 @@
                         </div>
                         <div class="collapse navbar-collapse" id="navbar">
                             <ul class="nav navbar-nav navbar-right">
+                                @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                                <li class="postadd">
-                                    <a class="btn btn-danger btn-post" href="post-ads.html"><span class="fa fa-plus-circle"></span> Post an Ad</a>
+                                @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+    
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        {{ Form::open(['method' => 'post', 'url' => 'logout', 'id' => 'logout-form']) }}
+                                        {{ Form::close() }}
+                                    </div>
+                                </li>
+                                @endguest
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -31,14 +50,14 @@
                     </div>
                     <h3 class="title-menu"> {{ __('all_pages') }} </h3>
                     <ul class="nav navmenu-nav"> 
-                        <li><a href=""> {{ __('home') }} </a></li>
-                        <li><a href=""> {{ __('register') }} </a></li>
-                        <li><a href=""> {{ __('login') }} </a></li>
+                        <li><a href="">{{ __('home') }}</a></li>
+                        <li><a href="">{{ __('register') }}</a></li>
+                        <li><a href="">{{ __('login') }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms" data-toggle="offcanvas" data-target=".navmenu">
-                <p><i class="fa fa-file-text-o"></i> {{ __('all_pages') }} </p>
+                <p><i class="fa fa-file-text-o"></i>{{ __('all_pages') }}</p>
             </div>
         </div>
     </div>
