@@ -13,20 +13,16 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\Topic::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => Hash::make($faker->password),
-        'address' => $faker->address,
-        'avatar' => $faker->image(
-            $dir = config('view.image') . '/avatar',
+        'description' => $faker->text,
+        'topic_image' => $faker->image(
+            $dir = config('view.image') . '/topic_image',
             $width = 640,
             $height = 480
         ),
-        'working_place' => $faker->company,
-        'grade' => rand(1, 12),
-        'role' => rand(0, 2),
-        'remember_token' => str_random(10),
+        'forum_id' => \App\Models\Forum::all()->random()->id,
+        'category_id' => \App\Models\Category::all()->random()->id,
     ];
 });
