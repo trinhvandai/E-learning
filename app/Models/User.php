@@ -29,4 +29,21 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function specializes()
+    {
+        return $this->belongsToMany('App\Models\Specialize');
+    }
+
+    public function onlineClassrooms()
+    {
+        return $this->belongsToMany('App\Models\OnlineClassroom', 'online_classrooms_users')
+            ->withTimestamps();
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany('App\Models\Course', 'courses_users')
+            ->using('App\Models\CoursesUser');
+    }
 }
