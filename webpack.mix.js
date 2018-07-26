@@ -11,5 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.copyDirectory('resources/assets/css-hungph', 'public/assets');
+mix.copyDirectory('resources/assets/js-hungph', 'public/assets');
