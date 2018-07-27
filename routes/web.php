@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::middleware('auth')->group(function () {
+    Route::resource('users', 'UserController')->only('show')->middleware('selfaccount');
+});

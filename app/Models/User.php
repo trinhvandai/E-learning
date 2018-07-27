@@ -54,4 +54,15 @@ class User extends Authenticatable
         self::ROLE_TEACHER => 'Teacher',
         self::ROLE_STUDENT => 'Student',
     ];
+
+    /**
+     * Get user model by id.
+     *
+     * @param id
+     * @return User
+     */
+    public function findUser($id)
+    {
+        return User::findUser($id);
+    }
 }
