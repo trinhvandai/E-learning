@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    Trang chủ
+    {{ __('home') }}
 @endsection
 
 @section('content')
@@ -10,8 +10,8 @@
     <div class="overlay">
         <div class="container">
             <div class="main-text">
-                <h1 class="intro-title">Welcome To <span style="color: #3498DB">ClassiX</span></h1>
-                <p class="sub-title">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+                <h1 class="intro-title"> {{ __('slogan_p1') }} <span style="color: #e75400"> {{ __('slogan_p2') }} </span></h1>
+                <p class="sub-title"> {{ __('slogan_p3') }} </p>
 
                 <div class="row search-bar">
                     <div class="advanced-search">
@@ -20,7 +20,7 @@
                                 <div class="input-group-addon search-category-container">
                                     <label class="styled-select">
                                         <select class="dropdown-product selectpicker" name="product-cat">
-                                            <option value="0">All Categories</option>
+                                            <option value="0"> {{ __('select_category') }} </option>
                                             <option class="subitem" value="community"> Community</option>
                                             <option value="items-for-sale"> Items For Sale</option>
                                             <option value="jobs"> Jobs</option>
@@ -37,7 +37,7 @@
                                 <div class="input-group-addon search-category-container">
                                     <label class="styled-select location-select">
                                         <select class="dropdown-product selectpicker" name="product-cat">
-                                            <option value="0">All Locations</option>
+                                            <option value="0"> {{ __('select_rate') }} </option>
                                             <option value="New York">New York</option>
                                             <option value="California">California</option>
                                             <option value="Washington">Washington</option>
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 search-col">
-                                <input class="form-control keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
+                                <input class="form-control keyword" name="keyword" value="" placeholder="{{ __('keyword') }}" type="text">
                                 <i class="fa fa-search"></i>
                             </div>
                             <div class="col-md-3 col-sm-6 search-col">

@@ -46,4 +46,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Course', 'courses_users')
             ->using('App\Models\CoursesUser');
     }
+
+    const ROLE_TEACHER = 1;
+    const ROLE_STUDENT = 2;
+
+    public static $roles = [
+        self::ROLE_TEACHER => 'Teacher',
+        self::ROLE_STUDENT => 'Student',
+    ];
 }
