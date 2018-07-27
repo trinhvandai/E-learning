@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "js-hungph": "*",
-    "css-hungph": "*"
+    "css-hungph": "*",
+    "LMS": "https://github.com/muadong200474/lightboostrap.git"
   }
 }
