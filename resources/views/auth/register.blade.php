@@ -61,7 +61,7 @@
                             <div class="form-group error-form">
                                 <div class="input-icon @if($errors->has('role')) error-input @endif">
                                     {{ Form::label('role', __('you_are'), ['id' => 'label-role']) }}
-                                    {{ Form::select('role', \App\Models\User::$roles, null, ['class' => 'form-control', 'id' => 'role', 'style' => 'max-width: 70%; margin-top: 5px; margin-bottom: 20px; display: inline-block;', 'placeholder' => __('teacher_student')]) }}
+                                    {{ Form::select('role', \App\Models\User::$roles, null, ['class' => 'form-control', 'id' => 'role', 'name' => 'role', 'placeholder' => __('teacher_student')]) }}
                                 </div>
                             <p>{{ $errors->first('role') }}</p>
                             </div>
