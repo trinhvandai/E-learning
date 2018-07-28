@@ -13,10 +13,14 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::resource('users', 'UserController')->only('show')->middleware('selfaccount');
+    Route::resource('users', 'UserController')->only('show', 'update')->middleware('selfaccount');
 });
+
+Route::post('districts', 'DistrictController@update');
+
+Route::post('communes', 'CommuneController@update');
