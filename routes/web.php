@@ -13,9 +13,13 @@
 
 Route::get('/', function () {
     return view('home');
-})->name('home');
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
+
+Route::get('user/activation/{token}', 'Auth\RegisterController@activateUser')->name('user.activate');
 
 Route::middleware('auth')->group(function () {
     Route::resource('users', 'UserController')->only('show', 'update')->middleware('selfaccount');

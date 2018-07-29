@@ -29,6 +29,11 @@
                         <h3>
                             {{ __('login') }}
                         </h3>
+                        @if (session('warning'))
+                            <span class="alert alert-warning help-block">
+                                <strong>{{ session('warning') }}</strong>
+                            </span>
+                        @endif
                         {{ Form::open(['method' => 'post', 'class' => 'login-form']) }}
                             @if(!$errors->isEmpty())
                                 @foreach ($errors->all() as $error)

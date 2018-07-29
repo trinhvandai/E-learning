@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Classes\ActivationService;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -23,21 +26,24 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    protected $activationService;
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ActivationService $activationService)
     {
         $this->middleware('guest');
+        $this->activationService = $activationService;
     }
 
     /**
@@ -71,5 +77,33 @@ class RegisterController extends Controller
             'role' => $data['role'],
             'image' => 'public/images/avatar/basic_avatar.png',
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+        event(new Registered($user));
+
+        $this->activationService->sendActivationMail($user);
+        
+        return redirect('/login')->with('status', __('check_email'));
+    }
+
+    public function activateUser($token)
+    {
+        if ($user = $this->activationService->activateUser($token)) {
+            auth()->login($user);
+            
+            return redirect()->route('login');
+        }
+        abort(404);
     }
 }

@@ -71,5 +71,10 @@
     "users": "Users",
     "specializes": "Specializes",
     "online classrooms": "Online Classrooms",
-    "admin": "Admin"
+    "admin": "Admin",
+    "activation_mail_title": "Activation Email - LIXIL",
+    "activation_mail_p1": "Welcome to LIXIL Education, ",
+    "activation_mail_p2": "You need complete register by click the follow link. Best regards !",
+    "check_email": "Please check your email and active your account.",
+    "not_been_actived": "Your account has not been activated, please check your email."
 }
