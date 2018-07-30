@@ -23,6 +23,7 @@ class User extends Authenticatable
         'avatar',
         'working_place',
         'grade',
+        'active',
     ];
 
     /**
@@ -78,7 +79,7 @@ class User extends Authenticatable
      */
     public function findUser($id)
     {
-        return User::find($id);
+        return User::findOrFail($id);
     }
 
     /**
