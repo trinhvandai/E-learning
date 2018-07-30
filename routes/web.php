@@ -24,3 +24,7 @@ Route::middleware('auth')->group(function () {
 Route::post('districts', 'DistrictController@update');
 
 Route::post('communes', 'CommuneController@update');
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@index')->name('adminDashboard');
+});

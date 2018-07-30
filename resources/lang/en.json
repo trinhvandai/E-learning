@@ -65,5 +65,11 @@
     "retype_new_password": "Re-type new password",
     "update_password": "Update password",
     "update_info_fail": "Update info failed, please check your input",
-    "update_password_fail": "Update password failed, please check your input"
+    "update_password_fail": "Update password failed, please check your input",
+    "admin dashboard": "Admin Dashboard",
+    "log out": "Log out",
+    "users": "Users",
+    "specializes": "Specializes",
+    "online classrooms": "Online Classrooms",
+    "admin": "Admin"
 }
