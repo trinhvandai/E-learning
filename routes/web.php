@@ -30,6 +30,10 @@ Route::post('districts', 'DistrictController@update');
 
 Route::post('communes', 'CommuneController@update');
 
+Route::get('fetch_specializes', 'SearchController@fetchSpecialize')->name('fetch_specializes');
+
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('adminDashboard');
+
+    Route::resource('specializes', 'SpecializeController')->except('create', 'show');
 });
