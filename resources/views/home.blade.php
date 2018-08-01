@@ -14,51 +14,44 @@
                 <p class="sub-title"> {{ __('slogan_p3') }} </p>
 
                 <div class="row search-bar">
-                    <div class="advanced-search">
-                        <form class="search-form" method="get">
-                            <div class="col-md-3 col-sm-6 search-col">
-                                <div class="input-group-addon search-category-container">
-                                    <label class="styled-select">
-                                        <select class="dropdown-product selectpicker" name="product-cat">
-                                            <option value="0"> {{ __('select_category') }} </option>
-                                            <option class="subitem" value="community"> Community</option>
-                                            <option value="items-for-sale"> Items For Sale</option>
-                                            <option value="jobs"> Jobs</option>
-                                            <option value="personals"> Personals</option>
-                                            <option value="training"> Training</option>
-                                            <option value="real_estate"> Real Estate</option>
-                                            <option value="services"> Services</option>
-                                            <option value="vehicles"> Vehicles</option>
-                                        </select>
-                                    </label>
+                        <div class="advanced-search">
+                            {{-- <form class="search-form" method="get">
+                                <div class="col-md-3 col-sm-6 search-col">
+                                    <div class="input-group-addon search-category-container">
+                                        <label class="styled-select">
+                                            <select class="dropdown-product selectpicker" name="product-cat">
+                                                <option value="0"> {{ __('select_category') }} </option>
+                                                @foreach(\App\Models\Category::all() as $category)
+                                                    <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 search-col">
-                                <div class="input-group-addon search-category-container">
-                                    <label class="styled-select location-select">
-                                        <select class="dropdown-product selectpicker" name="product-cat">
-                                            <option value="0"> {{ __('select_rate') }} </option>
-                                            <option value="New York">New York</option>
-                                            <option value="California">California</option>
-                                            <option value="Washington">Washington</option>
-                                            <option value="churches">Birmingham</option>
-                                            <option value="Birmingham">Chicago</option>
-                                            <option value="Phoenix">Phoenix</option>
-                                        </select>
-                                    </label>
+                                <div class="col-md-3 col-sm-6 search-col">
+                                    <div class="input-group-addon search-category-container">
+                                        <label class="styled-select location-select">
+                                            <select class="dropdown-product selectpicker" name="product-cat">
+                                                <option value="0"> {{ __('select_level') }} </option>
+                                                @for ($temp=1; $temp<=3; $temp++)
+                                                    <option value="{{ $temp }}">
+                                                        {{ __('level') . $temp }}
+                                                    </option>
+                                                @endfor
+                                            </select>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 search-col">
-                                <input class="form-control keyword" name="keyword" value="" placeholder="{{ __('keyword') }}" type="text">
-                                <i class="fa fa-search"></i>
-                            </div>
-                            <div class="col-md-3 col-sm-6 search-col">
-                                <button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
-                            </div>
-                        </form>
+                                <div class="col-md-3 col-sm-6 search-col">
+                                    <input class="form-control keyword" name="keyword" value="" placeholder="{{ __('keyword') }}" type="text">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <div class="col-md-3 col-sm-6 search-col">
+                                    <button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
+                                </div>
+                            </form> --}}
+                        </div>
                     </div>
-                </div>
-
             </div>
         </div>
     </div>

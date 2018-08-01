@@ -11,14 +11,34 @@ class Course extends Model
     
     protected $table = 'courses';
 
+    const PAGINATION = 8;
+
+    public $sortable = [
+        'rate',
+        'level',
+        'like',
+    ];
+
     public function category()
     {
-        $this->belongsTo('App\Models\Category');
+        return $this->belongsTo('App\Models\Category');
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsToMany('App\Models\User', 'courses_users')
             ->using('App\Models\CoursesUser');
+    }
+
+    public function getCourse()
+    {
+        $builder = Course::orderBy('updated_at', 'DESC');
+        
+        return $builder->paginate(self::PAGINATION);
+    }
+
+    public function findCourse($id)
+    {
+        return Course::findOrFail($id);
     }
 }

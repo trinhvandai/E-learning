@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Course');
     }
+
+    public function getAllCategory()
+    {
+        return Category::all();
+    }
 }
