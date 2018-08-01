@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "07a3e2ea6f085ba088069353d50be02b",
@@ -2702,6 +2702,7 @@
     ],
     "packages-dev": [
         {
+<<<<<<< HEAD
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.1.5",
             "source": {
@@ -2770,6 +2771,8 @@
             "time": "2018-05-03T18:27:04+00:00"
         },
         {
+=======
+>>>>>>> Admin - CRUD for specialize
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {
