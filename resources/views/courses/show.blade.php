@@ -1,23 +1,18 @@
 @extends('layouts.default')
 
 @section('title')
-    {{ $selectedCourse->name . __('course') }}
+    {{ $selectedCourse->name . ' - ' . __('course') }}
 @endsection
 
 @section('content')
-<div id="content">
+    <div id="content">
         <div class="container">
             <div class="row">
                 <div class="product-info">
-                    <div class="col-sm-8">
+                    <div class="col-sm-8">                                    
                         <div class="inner-box ads-details-wrapper">
                             <h2> {{ $selectedCourse->name }} </h2>
-                                @foreach ($selectedCourse->users as $user)
-                                    @if ($user->role == 1)
-                                        @php $teacher = $user @endphp
-                                    @endif
-                                @endforeach
-                            <p class="item-intro"><span class="poster"> {{ __('updated_at') . $selectedCourse->updated_at . __('by') . $teacher->name }} </span></p>
+                            <p class="item-intro"><span class="poster"> {{ __('updated_at') . $selectedCourse->updated_at . __('by') . $selectedCourse->teacher_name }} </span></p>
                             <div id="owl-demo" class="owl-carousel owl-theme">
                                 <div class="item">
                                     <img src="{{ str_replace('public/', '', asset($selectedCourse->course_avatar)) }}" alt="">
@@ -36,11 +31,18 @@
                                 <div class="ads-details-info col-md-8">
                                     <p class="mb15"> {{ $selectedCourse->description }} </p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" id="active-btn">
+                                    @if (!($activeCourse))
+                                        <button type="button" class="btn btn-primary"> {{ __('active_now') }} </button>
+                                    @elseif ($activeCourse === 1)
+                                        <button type="button" class="btn btn-warning"> {{ __('cancel_active') }} </button>
+                                    @elseif ($activeCourse === 2)
+                                        <button type="button" class="btn btn-success"> {{ __('go_study') }} </button>
+                                    @endif
                                     <aside class="panel panel-body panel-details">
                                         <ul>
                                             <li>
-                                                <p class=" no-margin "><strong> {{ __('teacher') }} </strong> {{ $teacher->name }} </p>
+                                                <p class=" no-margin "><strong> {{ __('teacher') }} </strong> {{ $selectedCourse->teacher_name }} </p>
                                             </li>
                                             <li>
                                                 <p class="no-margin"><strong> {{ __('category') }} </strong> <a href="#"> {{ $selectedCourse->category->name }} </a></p>
@@ -57,19 +59,32 @@
                                             <li>
                                                  <p class="no-margin"><strong> {{ __('like:') }} </strong> {{ $selectedCourse->like }} </p>
                                             </li>
+                                            <li>
+                                                <p class="no-margin">                                                        
+                                                    <strong>
+                                                        @if (!($activeCourse))
+                                                            {{ __('status') . ': ' . __('ready') }}
+                                                        @elseif ($activeCourse === 1)
+                                                            {{ __('status') . ': ' . __('pending') }}
+                                                        @elseif ($activeCourse === 2)
+                                                            {{ __('status') . ': ' . __('actived') }} 
+                                                        @endif
+                                                    </strong>
+                                                </p>
+                                            </li>
                                         </ul>
                                     </aside>
                                     <div class="ads-action">
                                         <ul class="list-border">
                                             <li>
-                                                <a href="#"> <i class=" fa fa-phone"></i> {{ $teacher->phone }} </a></li>
+                                                <a href="#"> <i class=" fa fa-phone"></i> {{ $selectedCourse->teacher_phone }} </a></li>
                                                 <li>
                                                     <li>
-                                                        <a href="#"> {{ __('posted_by') }} <i class=" fa fa-user"></i> {{ $teacher->name }} </a></li>
+                                                        <a href="#"> {{ __('posted_by') }} <i class=" fa fa-user"></i> {{ $selectedCourse->teacher_name }} </a></li>
                                                         <li>
                                                             <a href="#"> <i class=" fa fa-heart"></i> {{ __('like') }} </a></li>
                                                             <li>
-                                                                <a href="#"> <i class="fa fa-share-alt"></i> Share </a>
+                                                                <a href="#"> <i class="fa fa-share-alt"></i> Share </a><br><br>
                                                                 <div class="social-link">
                                                                     <a class="twitter" target="_blank" data-original-title="twitter" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
                                                                     <a class="facebook" target="_blank" data-original-title="facebook" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
@@ -155,8 +170,8 @@
                                 </div>
                             </div>
                         </div>
-
-
+                        {{ Form::text('user', $currentUserId, ['class' => 'form-control hidden', 'id' => 'user_id']) }}
+                        {{ Form::text('course', $selectedCourse->id, ['class' => 'form-control hidden', 'id' => 'course_id']) }}
                         <section class="featured-lis mb30">
                             <div class="container">
                                 <div class="row">
@@ -233,5 +248,51 @@
             </div>
         </div>
     </div>
-</div>
+@endsection
+
+@section('inline_scripts')
+    <script type="text/javascript">
+        $('button').on('click', function() {
+            console.log('clicked');
+            $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });              
+            $.post(
+                '/courses_users/activeCourse',
+                {
+                    user_id : $('#user_id').val(),
+                    course_id : $('#course_id').val()
+                },
+                function(data) {
+                    if (typeof(data) === 'boolean') {
+                        $('#active-btn button').removeClass('btn-warning');
+                        $('#active-btn button').addClass('btn-primary');
+                        $('#active-btn button').text(' {{ __('active_now') }} ');
+
+                        $.notify({
+                            // options
+                            message: '{{ __('cancel_active_success') }}' 
+                        },{
+                            // settings
+                            type: 'warning'
+                        });
+                    } else {
+                        $('#active-btn button').removeClass('btn-primary');
+                        $('#active-btn button').addClass('btn-warning');
+                        $('#active-btn button').text(' {{ __('cancel_active') }} ');
+
+                        $.notify({
+                            // options
+                            message: ' {{ __('active_success') }} ' 
+                        },{
+                            // settings
+                            type: 'success'
+                        });
+                    }                  
+                }
+            );
+        })
+    </script>
 @endsection

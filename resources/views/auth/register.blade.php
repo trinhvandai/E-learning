@@ -59,6 +59,20 @@
                                 <p>{{ $errors->first('password') }}</p>
                             </div>
                             <div class="form-group error-form">
+                                <div class="input-icon @if($errors->has('phone')) error-input @endif">
+                                    <i class="icon fa fa-phone"></i>
+                                    {{ Form::text('phone', null, ['class' => 'form-control', 'id' => 'phone', 'placeholder' => __('your_phone')]) }}
+                                </div>
+                                <p>{{ $errors->first('phone') }}</p>
+                            </div>
+                            <div class="form-group error-form">
+                                <div class="input-icon @if($errors->has('birthday')) error-input @endif">
+                                    <i class="icon fa fa-birthday-cake"></i>
+                                    {{ Form::text('birthday', null, ['class' => 'form-control', 'id' => 'birthday', 'data-provide' => 'datepicker', 'data-date-format' => 'yy-mm-dd', 'placeholder' => __('your_birthday')]) }}
+                                </div>
+                                <p>{{ $errors->first('birthday') }}</p>
+                            </div>
+                            <div class="form-group error-form">
                                 <div class="input-icon @if($errors->has('role')) error-input @endif">
                                     {{ Form::label('role', __('you_are'), ['id' => 'label-role']) }}
                                     {{ Form::select('role', \App\Models\User::$roles, null, ['class' => 'form-control', 'id' => 'role', 'name' => 'role', 'placeholder' => __('teacher_student')]) }}
@@ -84,31 +98,40 @@
             $('#name').focus(function() {
                 $('#name').parent().removeAttr('style');
                 $('#name').parent().next().remove();
-            })
+            });
+
             $('#email').focus(function() {
                 $('#email').parent().removeAttr('style');
                 $('#email').parent().next().remove();
-            })
+            });
+
             $('#password').focus(function() {
                 $('#password').parent().removeAttr('style');
                 $('#password').parent().next().remove();
-            })
+            });
+
             $('#password-confirmation').focus(function() {
                 $('#password-confirmation').parent().removeAttr('style');
                 $('#password-confirmation').parent().next().remove();
-            })
+            });
+
+            $('#phone').focus(function() {
+                $('#phone').parent().removeAttr('style');
+                $('#phone').parent().next().remove();
+            });
+
             $('#role').focus(function() {
                 $('#role').parent().removeAttr('style');
                 $('#role').parent().next().remove();
-            })
-            $('#agree').removeAttr('checked');
-        })
+            });
+        });
+
         function statusCheckboxAgree() {
             if ($('#agree').is(':checked')) {
                 $('#submit').removeAttr('disabled');
             } else {
                 $('#submit').attr('disabled', true);
             }
-        }
+        };
     </script>
 @endsection

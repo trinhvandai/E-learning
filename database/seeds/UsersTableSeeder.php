@@ -20,6 +20,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
+            'phone' => '+85965818552',
+            'birthday' => '2000-01-01',
             'address' => 'Ha Noi',
             'role' => '0',
         ]);
