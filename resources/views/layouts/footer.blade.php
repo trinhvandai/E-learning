@@ -126,3 +126,4 @@
 <script type="text/javascript" src="{{ asset('assets/js/jquery.themepunch.revolution.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/jquery.themepunch.tools.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>

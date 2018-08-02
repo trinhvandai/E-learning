@@ -18,6 +18,8 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => Hash::make($faker->password),
+        'phone' => $faker->e164PhoneNumber,
+        'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'address' => $faker->address,
         'avatar' => $faker->image(
             $dir = config('view.image') . '/avatar',
