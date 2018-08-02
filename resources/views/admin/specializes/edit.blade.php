@@ -9,42 +9,39 @@
 @endsection
 
 @section('content')
-    <div class="content">
+    <div class="main-content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">{{ __('information') }}</h4>
-                        </div>
-                        <div class="content">
-                            {{ Form::model($specialize, ['action' => ['Admin\SpecializeController@update', $specialize->id], 'method' => 'put']) }}
+            <div class="page-header">
+                <h2 class="header-title">{{ __('specializes') }}</h2>
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a href="{{ route('adminDashboard') }}" class="breadcrumb-item">
+                            <i class="ti-home p-r-5"></i>{{ __('admin dashboard') }}
+                        </a>
+                        <a href="{{ route('specializes.index') }}" class="breadcrumb-item">
+                            {{ __('specializes') }}
+                        </a>
+                    <span class="breadcrumb-item active">{{ __('update existed specialize') }}</span>
+                    </nav>
+                </div>
+            </div>
+            <div class="card">
+                    <div class="card-header border bottom">
+                        <h4 class="card-title">{{ __('update existed specialize') }}</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ Form::model($specialize, ['route' => ['specializes.update', $specialize->id], 'method' => 'put', 'class' => 'form-inline']) }}
 
-                                @foreach ($errors->all() as $error)
-                                    <p class="alert alert-danger fix-alert">{{ $error }}</p>
-                                @endforeach
+                            @foreach ($errors->all() as $error)
+                                <p class="alert alert-danger fix-alert">{{ $error }}</p>
+                            @endforeach
+                           
+                            {{ Form::text('name', null, ['class' => 'form-control m-b-20 m-r-15', 'id' => 'name']) }}
+                                   
+                            {{ Form::text('teaching_grade', null, ['class' => 'form-control m-b-20 m-r-15', 'id' => 'teaching_grade']) }}
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ Form::label('name', __('name'), ['class' => 'control-label']) }}
-                                            {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ Form::label('teaching_grade', __('teaching_grade'), ['class' => 'control-label']) }}
-                                            {{ Form::text('teaching_grade', null, ['class' => 'form-control', 'id' => 'teaching_grade']) }}
-                                        </div>
-                                    </div>
-                                </div>
-    
-                                <div class="text-center">
-                                    {{ Form::submit(__('update'), ['class' => 'btn btn-primary']) }}
-                                </div>
-                                <div class="clearfix"></div>
-                            {{ Form::close() }}
-                        </div>
+                            {{ Form::submit(__('update'), ['class' => 'btn btn-gradient-success m-b-20']) }}
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

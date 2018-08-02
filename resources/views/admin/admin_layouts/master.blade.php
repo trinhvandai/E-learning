@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
     @include('admin.admin_layouts.head')
-    @yield('inline_styles')
     <body>
-        <div class="wrapper">
-            @include('admin.admin_layouts.side_menu')
-            <div class="main-panel">
-                @include('admin.admin_layouts.navbar')
-                <!--Content-->
-                @yield('content')
-                <!--./Content -->
+        <div class="app header-success-gradient">
+            <div class="layout">
+                @include('admin.admin_layouts.header')
+                @include('admin.admin_layouts.side_menu')
+                
+                <div class="page-container">
+                    <!--Content-->
+                    @yield('content')
+                    <!--./Content -->
+                </div>
             </div>
         </div>
     </body>

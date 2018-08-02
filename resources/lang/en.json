@@ -85,7 +85,7 @@
     "level": "Level ",
     "detail_course": "Detail",
     "free": "Free",
-    "lectures": " lectures",
+    "lectures": "lectures",
     "with": " with ",
     "hours": " hours",
     "create_course_p1": "Do you want create a course ?",
@@ -145,5 +145,8 @@
     "accept": "Accept",
     "advertisement": "Advertisement",
     "my_profile": "My profile",
-    "select_all": "Select: All"
+    "select_all": "Select: All",
+    "type to search": "Type to search...",
+    "setting": "Setting",
+    "profile": "Profie"
 }

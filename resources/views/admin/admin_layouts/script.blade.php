@@ -1,4 +1,2 @@
-<script src="{{ asset('assets/js/jquery-min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>
-<script src="{{ asset('assets/js/admin.js') }}"></script>
+<script src="{{ asset('assets/admin/js/vendor.js') }}"></script>
+<script src="{{ asset('assets/admin/js/app.min.js') }}"></script>
