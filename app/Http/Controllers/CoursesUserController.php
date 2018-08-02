@@ -26,6 +26,7 @@ class CoursesUserController extends Controller
     public function changeStatus(Request $request)
     {
         $data = $request->all();
+
         $result = $this->modelCoursesUser->changeCourseUser($data);
 
         return response()->json($result);

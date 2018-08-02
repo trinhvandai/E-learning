@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\Notification;
 
 class UserController extends Controller
 {
@@ -12,6 +13,7 @@ class UserController extends Controller
      * The user model instance.
      */
     protected $modelUser;
+    protected $modelNotification;
 
     /**
      * Create a new controller instance.
@@ -19,9 +21,10 @@ class UserController extends Controller
      * @param  User  $users
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, Notification $notification)
     {
         $this->modelUser = $user;
+        $this->modelNotification = $notification;
     }
 
     /**
@@ -40,10 +43,14 @@ class UserController extends Controller
         // Get all province from database.
         $selectProvince = \App\Models\Province::all()->pluck('name', 'id');
 
+        $notifications = $this->modelNotification->getNotificationFollowUser($id);
+        $countNotifications = $notifications->count();
+
         return view('users.show', compact([
             'selectedUser',
             'diffTime',
             'selectProvince',
+            'countNotifications',
         ]));
     }
 

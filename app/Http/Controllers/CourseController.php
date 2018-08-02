@@ -74,6 +74,7 @@ class CourseController extends Controller
         if (!empty($selectedCourse->user)) {
             foreach ($selectedCourse->user as $user) {
                 if ($user->role == 1) {
+                    $selectedCourse->setAttribute('teacher_id', $user->id);
                     $selectedCourse->setAttribute('teacher_name', $user->name);
                     $selectedCourse->setAttribute('teacher_phone', $user->phone);
                 }
@@ -85,7 +86,6 @@ class CourseController extends Controller
         if (null !== $this->modelCoursesUser->findCoursesUser($selectedCourse->id, $currentUserId)) {
             $activeCourse = $this->modelCoursesUser->findCoursesUser($selectedCourse->id, $currentUserId)->active;
         }
-        // dd($activeCourse);
 
         return view('courses.show', compact(
             'selectedCourse',

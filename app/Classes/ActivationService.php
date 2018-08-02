@@ -24,6 +24,7 @@ class ActivationService
         $token = $this->userActivation->createActivation($user);
         $user->activation_link = route('user.activate', $token);
         $mailable = new UserActivationEmail($user);
+
         Mail::to($user->email)->send($mailable);
     }
 

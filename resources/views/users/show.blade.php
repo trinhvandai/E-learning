@@ -43,7 +43,7 @@
                                                 <a href="account-archived-ads.html"><i class="fa fa-folder-o"></i>&ensp;&ensp; {{ __('uploaded_file') }} <span class="badge"></span></a>
                                             </li>
                                             <li>
-                                                <a href="account-pending-approval-ads.html"><i class="fa fa-hourglass-o"></i>&ensp;&ensp; {{ __('notification') }} <span class="badge"></span></a>
+                                                <a href="{{ route('users.notifications', $selectedUser->id) }}"><i class="fa fa-hourglass-o"></i>&ensp;&ensp; {{ __('notification') }} <span class="badge"> {{ $countNotifications }} </span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="panel-collapse collapse in" id="collapseB1">
                                     <div class="panel-body">
-                                        @if (isset($errors))
+                                        @if (empty($errors))
                                             <p> {{ __('update_info_fail') }} </p>
                                         @endif
                                         {{ Form::model($selectedUser, ['route' => ['users.update', $selectedUser->id]]) }}
@@ -161,7 +161,7 @@
                                 </div>
                                 <div aria-expanded="false" class="panel-collapse collapse" id="collapseB2">
                                     <div class="panel-body">
-                                        @if (isset($errors))
+                                        @if (empty($errors))
                                             <p> __('update_info_fail') </p>
                                         @endif
                                         {{ Form::model($selectedUser, ['route' => ['users.update', $selectedUser->id]]) }}

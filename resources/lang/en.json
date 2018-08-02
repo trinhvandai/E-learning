@@ -136,5 +136,14 @@
     "ready": "Ready",
     "pending": "Pending",
     "cancel_active_success": "Cancel active request for course successfully",
-    "active_success": "Active course successfully, wait approve from your teacher."
+    "active_success": "Active course successfully, wait approve from your teacher.",
+    "course_request_noti_p1": "User ",
+    "course_request_noti_p2": " want enjoy to your ",
+    "course_request_noti_p3": " course",
+    "index": "Index",
+    "content": "Content",
+    "accept": "Accept",
+    "advertisement": "Advertisement",
+    "my_profile": "My profile",
+    "select_all": "Select: All"
 }

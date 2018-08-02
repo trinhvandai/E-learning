@@ -19,6 +19,8 @@ class User extends Authenticatable
         'email',
         'password',
         'address',
+        'phone',
+        'birthday',
         'role',
         'avatar',
         'working_place',
@@ -51,6 +53,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Course', 'courses_users')
             ->using('App\Models\CoursesUser');
+    }
+
+    /**
+     * Get the notifications for the notification.
+     */
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification');
     }
 
     const ROLE_TEACHER = 1;

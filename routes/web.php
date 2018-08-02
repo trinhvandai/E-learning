@@ -23,8 +23,10 @@ Route::get('user/activation/{token}', 'Auth\RegisterController@activateUser')->n
 
 Route::middleware('auth')->group(function () {
     Route::resource('users', 'UserController')->only('show', 'update')->middleware('selfaccount');
+    Route::get('users/{id}/notifications', 'NotificationController@index')->name('users.notifications');
     Route::resource('courses', 'CourseController')->only('index', 'show');
     Route::post('courses_users/activeCourse', 'CoursesUserController@changeStatus');
+    Route::resource('notifications', 'NotificationController');
 });
 
 Route::post('districts', 'DistrictController@update');

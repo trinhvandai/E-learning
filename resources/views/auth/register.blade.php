@@ -80,7 +80,7 @@
                             <p>{{ $errors->first('role') }}</p>
                             </div>
                             <div class="checkbox">
-                                {{ Form::checkbox('agree', null, true, ['id' => 'agree', 'checked' => 'false', 'onclick' => 'statusCheckboxAgree()', 'style' => 'float: left']) }}
+                                {{ Form::checkbox('agree', null, false, ['id' => 'agree', 'onclick' => 'statusCheckboxAgree()', 'style' => 'float: left']) }}
                                 {{ Form::label('agree', __('agree_terms')) }}
                             </div>
                             {{ Form::submit(__('register'), ['class' => 'btn btn-common log-btn', 'id' => 'submit', 'disabled' => 'true']) }}

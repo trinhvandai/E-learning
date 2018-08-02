@@ -172,6 +172,7 @@
                         </div>
                         {{ Form::text('user', $currentUserId, ['class' => 'form-control hidden', 'id' => 'user_id']) }}
                         {{ Form::text('course', $selectedCourse->id, ['class' => 'form-control hidden', 'id' => 'course_id']) }}
+                        {{ Form::text('teacher', $selectedCourse->teacher_id, ['class' => 'form-control hidden', 'id' => 'teacher_id']) }}
                         <section class="featured-lis mb30">
                             <div class="container">
                                 <div class="row">
@@ -258,7 +259,8 @@
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-              });              
+              });
+                        
             $.post(
                 '/courses_users/activeCourse',
                 {
@@ -291,8 +293,20 @@
                             type: 'success'
                         });
                     }                  
-                }
+                },
+                'json'
             );
+
+            $.post(
+                '/notifications',
+                {
+                    user_id : $('#user_id').val(),
+                    course_id : $('#course_id').val(),
+                    teacher_id : $('#teacher_id').val()
+                },
+                function(data) {              
+                }
+            );  
         })
     </script>
 @endsection
