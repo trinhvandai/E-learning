@@ -5,6 +5,7 @@
 @endsection
 
 @section('inline_styles')
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/datatables/media/css/dataTables.bootstrap4.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/admin-custom.css') }}">
 @endsection
 
@@ -12,70 +13,58 @@
     <div class="message-display">
         @include('flash::message')
     </div>
-    <div class="content">
+    <div class="main-content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">{{ __('all specializes') }}</h4>
-                        </div>
-                        <div class="content table-responsive table-full-width">
-                            <div class="table-action">
-                                <div class="fix-btn-add">
-                                    <a class="btn btn-xs btn-warning" data-toggle="modal" data-target="#create-specialize-modal">
-                                        {{ __('add new') }} <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
-                                <div class="table-search pull-right col-xs-7">
-                                    <div class="form-group">
-                                        <label class="col-xs-5 control-label text-right fix-search-btn">{{ __('search') }}<br>
-                                        </label>
-                                        <div class="col-xs-7 searchpan">
-                                            <input class="form-control" id="filter" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <table class="table table-hover table-striped">
-                                <thead>
+            <div class="page-header">
+                <h2 class="header-title">{{ __('specializes') }}</h2>
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a href="{{ route('adminDashboard') }}" class="breadcrumb-item">
+                            <i class="ti-home p-r-5"></i>{{ __('admin dashboard') }}
+                        </a>
+                        <a class="breadcrumb-item active">{{ __('specializes') }}</a>
+                    </nav>
+                </div>
+            </div>  
+            <div class="create-btn">
+                <a class="btn btn-gradient-success btn-rounded" data-toggle="modal" data-target="#create-specialize-modal">
+                    {{ __('add new') }} <i class="fa fa-plus"></i>
+                </a>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-overflow">
+                        <table id="dt-opt" class="table table-hover table-xl">
+                            <thead>
+                                <tr>
                                     <th>ID</th>
                                     <th>{{ __('name') }}</th>
-                                    <th>{{ __('teaching grade') }}</th>
-                                    <th>{{ __('option') }}</th>
-                                </thead>
-                                <tbody>
-                                    @foreach ($specializes as $specialize)
+                                    <th>{{ __('teaching_grade') }}</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($specializes as $specialize)
                                     <tr id="specialize{{ $specialize->id }}">
-                                        <td>{{ $specialize->id }}</p></td>
+                                        <td>{{ $specialize->id }}</td>
                                         <td>{{ $specialize->name }}</td>
                                         <td>{{ $specialize->teaching_grade }}</td>
-                                        <td>
-                                            <p> 
-                                                <a class="btn btn-info btn-xs" 
-                                                href="{{ action('Admin\SpecializeController@edit', $specialize->id) }}">
-                                                <i class="fa fa-recycle"></i>{{ __('update') }}</a>
-
-                                                <a class="btn btn-danger btn-xs" data-toggle="modal" 
+                                        <td class="text-center font-size-18">
+                                            <a href="{{ route('specializes.edit', $specialize->id) }}" class="text-gray m-r-15"><i class="ti-pencil"></i></a>
+                                            <a class="text-gray" data-toggle="modal" 
                                                 data-target="#delete-modal"
-                                                data-url="{{ action('Admin\SpecializeController@destroy', $specialize->id) }}"
+                                                data-url="{{ route('specializes.destroy', $specialize->id) }}"
                                                 data-id="{{ $specialize->id }}">
-                                                <i class=" fa fa-trash"></i>{{ __('delete') }}</a>
-                                            </p>
+                                                <i class="ti-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-
-                            <div class="text-center">
-                                {{ $specializes->links() }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>       
+            </div>   
         </div>
     </div>
 @endsection
@@ -84,11 +73,18 @@
 @include('admin.specializes.create_special_modal')
 
 @section('inline_scripts')
+    <script src="{{ asset('assets/admin/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/media/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/tables/data-table.js') }}"></script>
     <script>    
         $(document).ready(function(){
             @if (count($errors) > 0)
                 $('#create-specialize-modal').modal('show');
             @endif
+
+            $('#create-close').on('click', function(){
+                $('div.alert').css('display', 'none');
+            });
 
             $('#delete-modal').on('show.bs.modal', function(e){
                 var url = $(e.relatedTarget).data('url');

@@ -1,14 +1,21 @@
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>@yield('title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
 
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/admin.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/vendor/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/vendor/PACE/themes/blue/pace-theme-minimal.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css') }}" rel="stylesheet" />
+
+    {{-- page css --}}
+    @yield('inline_styles')
+
+    <link href="{{ asset('assets/admin/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/materialdesignicons.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/themify-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/animate.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet" />
 </head>
