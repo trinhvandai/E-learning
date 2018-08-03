@@ -254,12 +254,11 @@
 @section('inline_scripts')
     <script type="text/javascript">
         $('button').on('click', function() {
-            console.log('clicked');
             $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-              });
+            });
                         
             $.post(
                 '/courses_users/activeCourse',
@@ -304,9 +303,9 @@
                     course_id : $('#course_id').val(),
                     teacher_id : $('#teacher_id').val()
                 },
-                function(data) {              
+                function(data) {           
                 }
             );  
-        })
+        });
     </script>
 @endsection

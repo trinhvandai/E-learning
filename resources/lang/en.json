@@ -158,5 +158,10 @@
     "all online classrooms": "All Online Classrooms",
     "classroom rate": "Classroom rate",
     "created person": "Created person",
-    "no person": "No person"
+    "no person": "No person",
+    "course_request_accept_p1": "Student",
+    "course_request_accept_p2": " is allowed to take the",
+    "course_request_accept_p3": " course",
+    "sure_delete": "Are you sure delete ?",
+    "delete_success": "Delete successfully"
 }

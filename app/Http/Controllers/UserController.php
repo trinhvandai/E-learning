@@ -43,14 +43,14 @@ class UserController extends Controller
         // Get all province from database.
         $selectProvince = \App\Models\Province::all()->pluck('name', 'id');
 
-        $notifications = $this->modelNotification->getNotificationFollowUser($id);
-        $countNotifications = $notifications->count();
+        $notifications = $this->modelNotification->getUnreadNotificationFollowUser($id);
+        $countUnreadNotifications = $notifications->count();
 
         return view('users.show', compact([
             'selectedUser',
             'diffTime',
             'selectProvince',
-            'countNotifications',
+            'countUnreadNotifications',
         ]));
     }
 

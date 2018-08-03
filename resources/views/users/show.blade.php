@@ -43,7 +43,7 @@
                                                 <a href="account-archived-ads.html"><i class="fa fa-folder-o"></i>&ensp;&ensp; {{ __('uploaded_file') }} <span class="badge"></span></a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('users.notifications', $selectedUser->id) }}"><i class="fa fa-hourglass-o"></i>&ensp;&ensp; {{ __('notification') }} <span class="badge"> {{ $countNotifications }} </span></a>
+                                                <a href="{{ route('users.notifications', $selectedUser->id) }}"><i class="fa fa-hourglass-o"></i>&ensp;&ensp; {{ __('notification') }} <span class="badge"> {{ ($countUnreadNotifications != 0) ? $countUnreadNotifications : '' }} </span></a>
                                             </li>
                                         </ul>
                                     </div>
