@@ -60,6 +60,8 @@
     "working_place": "Working place",
     "grade": "Grade",
     "choose_grade": "Choose your grade",
+    "learning_capacity": "Learning capacity",
+    "conduct": "conduct",
     "update": "Update",
     "change_password": "Change your password",
     "old_password": "Old password",
@@ -148,5 +150,13 @@
     "select_all": "Select: All",
     "type to search": "Type to search...",
     "setting": "Setting",
-    "profile": "Profie"
+    "profile": "Profie",
+    "personal information": "Personal Information",
+    "joined in": "Joined in",
+    "join in descript": "The day when user joined website",
+    "about yourself": "About yourself",
+    "all online classrooms": "All Online Classrooms",
+    "classroom rate": "Classroom rate",
+    "created person": "Created person",
+    "no person": "No person"
 }

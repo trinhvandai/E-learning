@@ -3230,7 +3230,6 @@
     ],
     "packages-dev": [
         {
-<<<<<<< HEAD
             "name": "barryvdh/laravel-debugbar",
             "version": "v3.1.5",
             "source": {
@@ -3299,8 +3298,6 @@
             "time": "2018-05-03T18:27:04+00:00"
         },
         {
-=======
->>>>>>> Admin - CRUD for specialize
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {

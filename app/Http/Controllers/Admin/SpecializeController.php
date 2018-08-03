@@ -29,7 +29,7 @@ class SpecializeController extends Controller
      */
     public function index()
     {
-        $specializes = Specialize::paginate(7);
+        $specializes = Specialize::all();
         
         return view('admin.specializes.index', compact('specializes'));
     }

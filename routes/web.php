@@ -39,4 +39,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('adminDashboard');
 
     Route::resource('specializes', 'SpecializeController')->except('create', 'show');
+    Route::resource('users', 'UserController')->except('create', 'edit');
+    Route::resource('online_classrooms', 'OnlineClassroomController')->except('create', 'edit');
 });
