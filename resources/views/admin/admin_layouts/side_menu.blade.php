@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#">
+                <a class="dropdown-toggle" href="{{ route('users.index') }}">
                     <span class="icon-holder">
                         <i class="mdi mdi-account-circle"></i>
                     </span>
@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#">
+                <a class="dropdown-toggle" href="{{ route('online_classrooms.index') }}">
                     <span class="icon-holder">
                         <i class="mdi mdi-account-multiple-outline"></i>
                     </span>
