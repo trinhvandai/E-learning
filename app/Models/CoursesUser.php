@@ -15,7 +15,6 @@ class CoursesUser extends Pivot
 
     public function changeCourseUser($data)
     {
-        // dd($data);
         $exists = CoursesUser::where('course_id', $data['course_id'])->where('user_id', $data['user_id'])->first();
         if (!$exists) {
             $data['active'] = 1;
@@ -26,7 +25,6 @@ class CoursesUser extends Pivot
         if ($exists->active === 1) {
             return $exists->delete();
         }
-        
     }
 
     public function findCoursesUser($courseId, $userId)

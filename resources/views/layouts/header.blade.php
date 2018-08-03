@@ -26,6 +26,9 @@
                                     </a>
     
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">
+                                            {{ __('my_profile') }}
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
@@ -50,9 +53,13 @@
                     </div>
                     <h3 class="title-menu"> {{ __('all_pages') }} </h3>
                     <ul class="nav navmenu-nav"> 
-                        <li><a href="">{{ __('home') }}</a></li>
-                        <li><a href="">{{ __('register') }}</a></li>
-                        <li><a href="">{{ __('login') }}</a></li>
+                        <li><a href="{{ route('home') }}">{{ __('home') }}</a></li>
+                        @guest
+                            <li><a href="{{ route('register') }}">{{ __('register') }}</a></li>
+                            <li><a href="{{ route('login') }}">{{ __('login') }}</a></li>
+                        @else
+                            <li><a href="{{ route('courses.index') }}">{{ __('course') }}</a></li>
+                        @endguest
                     </ul>
                 </div>
             </div>
