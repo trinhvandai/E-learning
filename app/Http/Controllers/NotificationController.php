@@ -55,4 +55,33 @@ class NotificationController extends Controller
             $this->modelNotification->deleteCourseRequestNotification($data);
         }
     }
+
+    public function changeReadStatus(Request $request)
+    {
+        $data = $request->all();
+
+        $result = $this->modelNotification->updateReadStatus($data);
+
+        return response()->json($result);
+    }
+
+    public function acceptCourseRequest(Request $request)
+    {
+        $data = $request->all();
+
+        $result = $this->modelNotification->acceptCourseRequest($data);
+        $courseName = \App\Models\Course::find($result->course_id)->name;
+        $userName = \App\Models\User::find($result->user_id)->name;
+
+        return response()->json(['course_name' => $courseName, 'user_name' => $userName]);
+    }
+
+    public function deleteNotification(Request $request)
+    {
+        $data = $request->all();
+
+        $this->modelNotification->deleteNotification($data);
+
+        return response()->json($data);
+    }
 }

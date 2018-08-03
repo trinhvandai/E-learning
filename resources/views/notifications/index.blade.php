@@ -4,6 +4,10 @@
     {{ __('profile_info') }}
 @endsection
 
+@section('inline_styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/custom/notifications_index.css') }}">  
+@endsection
+
 @section('content')
     <div id="content">
         <div class="container">
@@ -80,35 +84,35 @@
                                 <thead>
                                     <tr>
                                         <th data-type="numeric"></th>
-                                        <th> {{ __('index') }} </th>
+                                        <th class="text-center"> {{ __('index') }} </th>
                                         <th> {{ __('content') }} </th>
                                         <th> {{ __('option') }} </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($notifications as $key=>$notification)
-                                        <tr>
-                                            <td class="add-img-selector">
+                                        <tr class="{{ ($notification->seen) ? '' : 'unread-notify' }}" id="notification-{{ $notification->id }}">
+                                            <td class="col-sm-1 text-center">
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox">
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td class="add-img-td">
-                                                <a href="ads-details.html">
-                                                    <h4> {{ $key + 1 }} </h4>
-                                                </a>
+                                            <td class="col-sm-1 text-center">
+                                                <h4> {{ $key + 1 }} </h4>
                                             </td>
-                                            <td class="ads-details-td">
-                                                <h4><a href="ads-details.html"> {{ $notification->content }} </a></h4>
-                                                <p> <strong> Posted On </strong>:
+                                            <td class="col-sm-6">
+                                                <h4> {{ $notification->content }} </h4>
+                                                <p><strong> Posted On </strong>:
                                                 {{ $notification->created_at }} </p>
                                             </td>
-                                            <td class="action-td">
-                                                <p><a class="btn btn-primary btn-xs"> <i class="fa fa-check-circle"></i> {{ __('accept') }} </a></p>
-                                                <p> <a class="btn btn-danger btn-xs"> <i class=" fa fa-trash"></i> {{ __('delete') }} </a></p>
+                                            <td class="col-sm-1 text-center">
+                                                <p><a class="btn btn-primary btn-xs" id="accept-{{ $notification->id }}"> <i class="fa fa-check-circle"></i> {{ __('accept') }} </a></p>
+                                                <p><a class="btn btn-danger btn-xs" id="delete-{{ $notification->id }}"> <i class=" fa fa-trash"></i> {{ __('delete') }} </a></p>
                                             </td>
+                                            </strong>
+                                            {{ Form::text('notification_id', $notification->id, ['class' => 'form-control hidden', 'id' => 'notification-id', 'data-id' => $notification->id, 'data-code' => $notification->code ]) }}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -119,4 +123,71 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('inline_scripts')
+    <script type="text/javascript">
+        $('tbody tr').on('click', function() {  
+            $.post (
+                '/notifications/changeReadStatus',
+                { id : $('#notification-id').attr('data-id') },
+                function ($data) {
+                    var id = $('#notification-id').attr('data-id');
+                    $('#notification-' + id).removeClass('unread-notify')
+                },
+                'json'
+            );
+        });
+
+        var id = $('#notification-id').attr('data-id');
+        $('#accept-' + id).on('click', function() {
+            $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.post (
+                '/notifications/acceptCourseRequest',
+                { code : $('#notification-id').attr('data-code') },
+                function(data) {
+                    $('#accept-' + id).fadeOut(800);
+                    $.notify({
+                        // options
+                        message: ' {{ __('course_request_accept_p1') }} ' + data.user_name + ' {{ __('course_request_accept_p2') }} ' + data.course_name + ' {{ __('course_request_accept_p3')}} '
+                    },{
+                        // settings
+                        type: 'success'
+                    });
+                },
+                'json'
+            );
+        });
+
+        $('#delete-' + id).on('click', function() {
+            if (confirm('{{ __('sure_delete') }}')) {
+                $.ajaxSetup({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.post (
+                    '/notifications/deleteNotification',
+                    { id : $('#notification-id').attr('data-id') },
+                    function(data) {
+                        $('#notification-' + id).fadeOut(800);
+                        $.notify({
+                            // options
+                            message: ' {{ __('delete_success') }} '
+                        },{
+                            // settings
+                            type: 'danger'
+                        });
+                    },
+                    'json'
+                );              
+            }
+        });
+    </script>
 @endsection

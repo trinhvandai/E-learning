@@ -26,7 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::get('users/{id}/notifications', 'NotificationController@index')->name('users.notifications');
     Route::resource('courses', 'CourseController')->only('index', 'show');
     Route::post('courses_users/activeCourse', 'CoursesUserController@changeStatus');
-    Route::resource('notifications', 'NotificationController');
+    Route::resource('notifications', 'NotificationController')->only('index', 'store');
+    Route::post('notifications/changeReadStatus', 'NotificationController@changeReadStatus');
+    Route::post('notifications/acceptCourseRequest', 'NotificationController@acceptCourseRequest');
+    Route::post('notifications/deleteNotification', 'NotificationController@deleteNotification');
 });
 
 Route::post('districts', 'DistrictController@update');
