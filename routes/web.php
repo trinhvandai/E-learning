@@ -38,10 +38,10 @@ Route::post('communes', 'CommuneController@update');
 
 Route::get('fetch_specializes', 'SearchController@fetchSpecialize')->name('fetch_specializes');
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admins.'], function () {
     Route::get('/', 'AdminController@index')->name('adminDashboard');
-
     Route::resource('specializes', 'SpecializeController')->except('create', 'show');
     Route::resource('users', 'UserController')->except('create', 'edit');
-    Route::resource('online_classrooms', 'OnlineClassroomController')->except('create', 'edit');
+    Route::resource('online_classrooms', 'OnlineClassroomController')->except('create');
+    Route::resource('courses', 'CourseController')->except('create');
 });

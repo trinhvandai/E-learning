@@ -163,5 +163,13 @@
     "course_request_accept_p2": " is allowed to take the",
     "course_request_accept_p3": " course",
     "sure_delete": "Are you sure delete ?",
-    "delete_success": "Delete successfully"
+    "delete_success": "Delete successfully",
+    "course rate": "Course rate",
+    "all courses": "All courses",
+    "lecture count": "Lecture's number",
+    "duration": "Course's time duration",
+    "difficulty": "The difficulty of this course",
+    "created at": "Created at",
+    "create description": "The day when this course has been created",
+    "slide": "Slide"
 }

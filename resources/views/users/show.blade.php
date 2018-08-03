@@ -71,7 +71,7 @@
                 <div class="col-sm-9 page-content">
                     <div class="inner-box">
                         <div class="usearadmin">
-                            <h3><img class="userimg" src="{{ str_replace("public/", "", asset($selectedUser->avatar)) }}" alt="">{{ $selectedUser->name }}</h3>
+                            <h3><img class="userimg" src="{{ str_replace('public/', '', asset($selectedUser->avatar)) }}" alt="">{{ $selectedUser->name }}</h3>
                         </div>
                     </div>
                     @include('flash::message')

@@ -4,10 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Course;
+use App\Http\Requests\UpdateCourseForm;
 
-class UserController extends Controller
+class CourseController extends Controller
 {
+    protected $modelCourse;
+    /**
+     * Create a new controller instance.
+     *
+     * @param Specialize $specialize
+     * @return void
+     */
+    public function __construct(Course $course)
+    {
+        $this->modelCourse = $course;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +28,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()->where('role', '!=', 0);
+        $courses = Course::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.courses.index', compact('courses'));
     }
 
     /**
@@ -49,9 +62,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-
-        return view('admin.users.show', compact('user'));
+        //
     }
 
     /**
@@ -62,7 +73,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::findOrFail($id);
+
+        return view('admin.courses.edit', compact('course'));
     }
 
     /**
@@ -72,9 +85,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCourseForm $request, $id)
     {
-        //
+        $data = $request->all();
+        $result = $this->modelCourse->updateCourse($data, $id);
+
+        if ($result) {
+            flash(__('update status') . $id)->success();
+        } else {
+            flash(__('something wrong'))->error();
+        }
+
+        return redirect(route('admins.courses.edit', $id));
     }
 
     /**

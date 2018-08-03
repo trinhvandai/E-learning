@@ -2,7 +2,7 @@
     <div class="side-nav-inner">
         <ul class="side-nav-menu scrollable">
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="{{ route('adminDashboard') }}">
+                <a class="dropdown-toggle" href="{{ route('admins.adminDashboard') }}">
                     <span class="icon-holder">
                         <i class="mdi mdi-gauge"></i>
                     </span>
@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="{{ route('specializes.index') }}">
+                <a class="dropdown-toggle" href="{{ route('admins.specializes.index') }}">
                     <span class="icon-holder">
                         <i class="mdi mdi-account-box-outline"></i>
                     </span>
@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="{{ route('users.index') }}">
+                <a class="dropdown-toggle" href="{{ route('admins.users.index') }}">
                     <span class="icon-holder">
                         <i class="mdi mdi-account-circle"></i>
                     </span>
@@ -35,11 +35,22 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="{{ route('online_classrooms.index') }}">
+                <a class="dropdown-toggle" href="{{ route('admins.online_classrooms.index') }}">
                     <span class="icon-holder">
                         <i class="mdi mdi-account-multiple-outline"></i>
                     </span>
                     <span class="title">{{ __('online classrooms') }}</span>
+                    <span class="arrow">
+                        <i class="mdi mdi-chevron-right"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="{{ route('admins.courses.index') }}">
+                    <span class="icon-holder">
+                        <i class="mdi mdi-discord"></i>
+                    </span>
+                    <span class="title">{{ __('course') }}</span>
                     <span class="arrow">
                         <i class="mdi mdi-chevron-right"></i>
                     </span>

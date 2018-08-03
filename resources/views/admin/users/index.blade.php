@@ -6,7 +6,7 @@
 
 @section('inline_styles')
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/datatables/media/css/dataTables.bootstrap4.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/admin-custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/admin-custom.css') }}">
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
                 <h2 class="header-title">{{ __('users') }}</h2>
                 <div class="header-sub-title">
                     <nav class="breadcrumb breadcrumb-dash">
-                        <a href="{{ route('adminDashboard') }}" class="breadcrumb-item">
+                        <a href="{{ route('admins.adminDashboard') }}" class="breadcrumb-item">
                             <i class="ti-home p-r-5"></i>{{ __('admin dashboard') }}
                         </a>
                         <a class="breadcrumb-item active">{{ __('users') }}</a>
@@ -43,11 +43,15 @@
                                 @foreach ($users as $user)
                                     <tr id="specialize{{ $user->id }}">
                                         <td>{{ $user->id }}</td>
-                                        <td><a href="{{ route('users.show', $user->id) }}">
+                                        <td><a href="{{ route('admins.users.show', $user->id) }}">
                                             {{ $user->name }}
                                         </a></td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ \App\Models\User::$roles[$user->role] }}</td>
+                                        @if ($user->role == 0)
+                                            <td>{{ __('admin') }}</td>
+                                        @else
+                                            <td>{{ \App\Models\User::$roles[$user->role] }}</td>
+                                        @endif
                                         <td>{{ $user->last_login }}</td>
                                     </tr>
                                 @endforeach

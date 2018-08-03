@@ -63,12 +63,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Notification');
     }
 
-    const ROLE_ADMIN = 0;
     const ROLE_TEACHER = 1;
     const ROLE_STUDENT = 2;
 
     public static $roles = [
-        self::ROLE_ADMIN => 'Admin',
         self::ROLE_TEACHER => 'Teacher',
         self::ROLE_STUDENT => 'Student',
     ];
