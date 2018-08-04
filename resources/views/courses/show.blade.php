@@ -32,13 +32,18 @@
                                     <p class="mb15"> {{ $selectedCourse->description }} </p>
                                 </div>
                                 <div class="col-md-4" id="active-btn">
-                                    @if (!($activeCourse))
-                                        <button type="button" class="btn btn-primary"> {{ __('active_now') }} </button>
-                                    @elseif ($activeCourse === 1)
-                                        <button type="button" class="btn btn-warning"> {{ __('cancel_active') }} </button>
-                                    @elseif ($activeCourse === 2)
-                                        <button type="button" class="btn btn-success"> {{ __('go_study') }} </button>
-                                    @endif
+                                    @can('is-teacher')
+                                        <a class="btn btn-success" href="/courses/{{ $selectedCourse->id }}/lectures"> {{ __('manage') }}</a>
+                                    @endcan
+                                    @can('is-student')
+                                        @if (!($activeCourse))
+                                            <button type="button" class="btn btn-primary btn-active"> {{ __('active_now') }} </button>
+                                        @elseif ($activeCourse === 1)
+                                            <button type="button" class="btn btn-warning btn-active"> {{ __('cancel_active') }} </button>
+                                        @elseif ($activeCourse === 2)
+                                            <a class="btn btn-success" href="/courses/{{ $selectedCourse->id }}/lectures"> {{ __('go_study') }}</a>
+                                        @endif
+                                    @endcan
                                     <aside class="panel panel-body panel-details">
                                         <ul>
                                             <li>
@@ -253,7 +258,7 @@
 
 @section('inline_scripts')
     <script type="text/javascript">
-        $('button').on('click', function() {
+        $('.btn-active').on('click', function() {
             $.ajaxSetup({
                 headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -104,11 +104,13 @@
                                             </td>
                                             <td class="col-sm-6">
                                                 <h4> {{ $notification->content }} </h4>
-                                                <p><strong> Posted On </strong>:
+                                                <p><strong> {{ __('post_on') }} </strong>:
                                                 {{ $notification->created_at }} </p>
                                             </td>
                                             <td class="col-sm-1 text-center">
-                                                <p><a class="btn btn-primary btn-xs" id="accept-{{ $notification->id }}"> <i class="fa fa-check-circle"></i> {{ __('accept') }} </a></p>
+                                                @can('active-available', $notification->code)
+                                                    <p><a class="btn btn-primary btn-xs" id="accept-{{ $notification->id }}"> <i class="fa fa-check-circle"></i> {{ __('accept') }} </a></p>
+                                                @endcan
                                                 <p><a class="btn btn-danger btn-xs" id="delete-{{ $notification->id }}"> <i class=" fa fa-trash"></i> {{ __('delete') }} </a></p>
                                             </td>
                                             </strong>
@@ -127,7 +129,13 @@
 
 @section('inline_scripts')
     <script type="text/javascript">
-        $('tbody tr').on('click', function() {  
+        $('tbody tr').on('click', function() {
+            $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+              
             $.post (
                 '/notifications/changeReadStatus',
                 { id : $('#notification-id').attr('data-id') },
@@ -149,7 +157,9 @@
 
             $.post (
                 '/notifications/acceptCourseRequest',
-                { code : $('#notification-id').attr('data-code') },
+                {
+                    code : $('#notification-id').attr('data-code'),
+                },
                 function(data) {
                     $('#accept-' + id).fadeOut(800);
                     $.notify({

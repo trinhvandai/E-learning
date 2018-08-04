@@ -38,6 +38,7 @@ class Notification extends Model
         \App\Models\Course::find($data['course_id'])->name .
         __('course_request_noti_p3');
         $data['user_id'] = $data['teacher_id'];
+        $data['seen'] = 0;
         
         Notification::create($data);
     }
@@ -70,7 +71,7 @@ class Notification extends Model
 
     public function getUnreadNotificationFollowUser($id)
     {
-        return Notification::where('user_id', $id)->where('seen', 0)->orderBy('updated_at', 'DESC')->get();
+        return Notification::where('user_id', $id)->where('seen', '0')->orderBy('updated_at', 'DESC')->get();
     }
 
     public function updateReadStatus($data)
@@ -85,6 +86,15 @@ class Notification extends Model
         $userId = substr($data['code'], $position + 1, strlen($data['code']));
 
         CoursesUser::where('course_id', $courseId)->where('user_id', $userId)->update(['active' => '2']);
+
+        $data['code'] = $courseId . '-' . $userId;
+        $data['content'] = __('course_request_accept_noti_p1') .
+        \App\Models\User::find($courseId)->name .
+        __('course_request_accept_noti_p2');
+        $data['user_id'] = $userId;
+        $data['seen'] = 0;
+        
+        Notification::create($data);
 
         return CoursesUser::where('course_id', $courseId)->where('user_id', $userId)->first();
     }
