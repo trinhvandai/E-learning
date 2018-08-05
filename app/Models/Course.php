@@ -13,6 +13,15 @@ class Course extends Model
 
     const PAGINATION = 8;
 
+    protected $fillable = [
+        'name',
+        'lecture_count',
+        'time',
+        'level',
+        'description',
+        'category',
+    ];
+
     public $sortable = [
         'rate',
         'level',
@@ -40,5 +49,24 @@ class Course extends Model
     public function findCourse($id)
     {
         return Course::findOrFail($id);
+    }
+
+    public function createCourse($data)
+    {
+        return Course::create($data);
+    }
+
+    public function updateCourse($data, $id)
+    {
+        $result = Course::findOrFail($id)->update($data);
+
+        return $result;
+    }
+
+    public function deleteCourse($id)
+    {
+        $result = Course::findOrFail($id)->delete();
+
+        return $result;
     }
 }

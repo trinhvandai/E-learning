@@ -5,7 +5,7 @@
 @endsection
 
 @section('inline_styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/admin-custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/admin-custom.css') }}">
 @endsection
 
 @section('content')
@@ -15,10 +15,10 @@
                 <h2 class="header-title">{{ __('information') }}</h2>
                 <div class="header-sub-title">
                     <nav class="breadcrumb breadcrumb-dash">
-                        <a href="{{ route('adminDashboard') }}" class="breadcrumb-item">
+                        <a href="{{ route('admins.adminDashboard') }}" class="breadcrumb-item">
                             <i class="ti-home p-r-5"></i>{{ __('admin dashboard') }}
                         </a>
-                        <a href="{{ route('users.index') }}" class="breadcrumb-item">{{ __('users') }}</a>
+                        <a href="{{ route('admins.users.index') }}" class="breadcrumb-item">{{ __('users') }}</a>
                         <span class="breadcrumb-item active">{{ $user->name }}</span>
                     </nav>
                 </div>
@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Avatar</label>
                                     <img class="form-control-plaintext fix-avatar" 
-                                        src="{{ str_replace("public/", "", asset($user->avatar)) }}">
+                                        src="{{ str_replace('public/', '', asset($user->avatar)) }}">
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,11 @@
                             <div class="p-h-10">
                                 <div class="form-group">
                                     <label class="control-label">{{ __('role') }}</label>
-                                    <p class="form-control" aria-readonly="true">{{ \App\Models\User::$roles[$user->role] }}</p>
+                                    @if ($user->role == 0)
+                                        <p class="form-control" aria-readonly="true">{{ __('admin') }}</p>
+                                    @else
+                                        <p class="form-control" aria-readonly="true">{{ \App\Models\User::$roles[$user->role] }}</p>
+                                    @endif
                                 </div>
                             </div>
                         </div> 

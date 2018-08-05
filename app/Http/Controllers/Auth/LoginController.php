@@ -60,6 +60,10 @@ class LoginController extends Controller
             );
         }
         
-        return redirect()->intended($this->redirectPath());
+        if ($user->role == 1 || $user->role == 2) {
+            return redirect()->intended($this->redirectPath());
+        } else {
+            return redirect(route('admins.adminDashboard'));
+        }
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin.admin_layouts.master')
 
 @section('title')
-    {{ __('all specializes') }}
+    {{ __('all courses') }}
 @endsection
 
 @section('inline_styles')
@@ -16,21 +16,16 @@
     <div class="main-content">
         <div class="container-fluid">
             <div class="page-header">
-                <h2 class="header-title">{{ __('specializes') }}</h2>
+                <h2 class="header-title">{{ __('course') }}</h2>
                 <div class="header-sub-title">
                     <nav class="breadcrumb breadcrumb-dash">
                         <a href="{{ route('admins.adminDashboard') }}" class="breadcrumb-item">
                             <i class="ti-home p-r-5"></i>{{ __('admin dashboard') }}
                         </a>
-                        <a class="breadcrumb-item active">{{ __('specializes') }}</a>
+                        <a class="breadcrumb-item active">{{ __('course') }}</a>
                     </nav>
                 </div>
             </div>  
-            <div class="create-btn">
-                <a class="btn btn-gradient-success btn-rounded" data-toggle="modal" data-target="#create-specialize-modal">
-                    {{ __('add new') }} <i class="fa fa-plus"></i>
-                </a>
-            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="table-overflow">
@@ -39,24 +34,22 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>{{ __('name') }}</th>
-                                    <th>{{ __('teaching_grade') }}</th>
-                                    <th></th>
+                                    <th>{{ __('lecture count') }}</th>
+                                    <th>{{ __('level') }}</th>
+                                    <th>{{ __('status') }}</th>
+                                    <th>{{ __('accept') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($specializes as $specialize)
-                                    <tr id="specialize{{ $specialize->id }}">
-                                        <td>{{ $specialize->id }}</td>
-                                        <td>{{ $specialize->name }}</td>
-                                        <td>{{ $specialize->teaching_grade }}</td>
+                                @foreach ($courses as $course)
+                                    <tr id="specialize{{ $course->id }}">
+                                        <td>{{ $course->id }}</td>
+                                        <td><a href="{{ route('admins.courses.edit', $course->id) }}">{{ $course->name }}</a></td>
+                                        <td>{{ $course->lecture_count }}</td>
+                                        <td>{{ $course->level }}</td>
+                                        <td><span class="badge badge-pill badge-warning">{{ __('pending') }}</span></td>
                                         <td class="text-center font-size-18">
-                                            <a href="{{ route('admins.specializes.edit', $specialize->id) }}" class="text-gray m-r-15"><i class="ti-pencil"></i></a>
-                                            <a class="text-gray" data-toggle="modal" 
-                                                data-target="#delete-modal"
-                                                data-url="{{ route('admins.specializes.destroy', $specialize->id) }}"
-                                                data-id="{{ $specialize->id }}">
-                                                <i class="ti-trash"></i>
-                                            </a>
+                                            <a href="#" class="text-gray m-r-15" placeholder="accept"><i class="ti-check-box"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -69,28 +62,12 @@
     </div>
 @endsection
 
-@include('admin.specializes.delete_modal')
-@include('admin.specializes.create_special_modal')
-
 @section('inline_scripts')
     <script src="{{ asset('assets/admin/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/media/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/tables/data-table.js') }}"></script>
-    <script>    
+    <script>
         $(document).ready(function(){
-            @if (count($errors) > 0)
-                $('#create-specialize-modal').modal('show');
-            @endif
-
-            $('#create-close').on('click', function(){
-                $('div.alert').css('display', 'none');
-            });
-
-            $('#delete-modal').on('show.bs.modal', function(e){
-                var url = $(e.relatedTarget).data('url');
-                $('#form-delete').attr('action', url);
-            });
-
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         })
     </script>
