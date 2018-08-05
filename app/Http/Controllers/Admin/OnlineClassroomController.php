@@ -5,9 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\OnlineClassroom;
+use App\Http\Requests\FormOnlineClassroomRequest;
 
 class OnlineClassroomController extends Controller
 {
+    protected $modelOnlineClassroom;
+    /**
+     * Create a new controller instance.
+     *
+     * @param OnlineClassroom $onlineClassroom
+     * @return void
+     */
+    public function __construct(OnlineClassroom $onlineClassroom)
+    {
+        $this->modelOnlineClassroom = $onlineClassroom;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +73,9 @@ class OnlineClassroomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $onlineClassroom = OnlineClassroom::findOrFail($id);
+
+        return view('admin.online_classrooms.edit', compact('onlineClassroom'));
     }
 
     /**
@@ -70,9 +85,18 @@ class OnlineClassroomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FormOnlineClassroomRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $result = $this->modelOnlineClassroom->updateOnlineClassroom($data, $id);
+
+        if ($result) {
+            flash(__('update status') . $id)->success();
+        } else {
+            flash(__('something wrong'))->error();
+        }
+
+        return redirect(route('admins.online_classrooms.edit', $id));
     }
 
     /**
@@ -83,6 +107,14 @@ class OnlineClassroomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = $this->modelOnlineClassroom->deleteOnlineClassroom($id);
+
+        if ($result) {
+            flash(__('delete status') . $id)->success();
+        } else {
+            flash(__('something wrong'))->error();
+        }
+
+        return redirect(route('admins.online_classrooms.index'));
     }
 }

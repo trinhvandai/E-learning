@@ -187,5 +187,7 @@
     "title": "Title: ",
     "description": "Description: ",
     "link_video": "URL video: ",
-    "add_lecture": "Add Lecture"
+    "add_lecture": "Add Lecture",
+    "update existed classroom": "Update existed classroom",
+    "joined people list": "Joined people list"
 }

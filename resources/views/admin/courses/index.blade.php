@@ -44,12 +44,18 @@
                                 @foreach ($courses as $course)
                                     <tr id="specialize{{ $course->id }}">
                                         <td>{{ $course->id }}</td>
-                                        <td><a href="{{ route('admins.courses.edit', $course->id) }}">{{ $course->name }}</a></td>
+                                        <td>{{ $course->name }}</a></td>
                                         <td>{{ $course->lecture_count }}</td>
                                         <td>{{ $course->level }}</td>
                                         <td><span class="badge badge-pill badge-warning">{{ __('pending') }}</span></td>
                                         <td class="text-center font-size-18">
-                                            <a href="#" class="text-gray m-r-15" placeholder="accept"><i class="ti-check-box"></i></a>
+                                            <a href="#" class="text-gray m-r-15" title="accept"><i class="ti-check-box"></i></a>
+                                            <a href="{{ route('admins.courses.edit', $course->id) }}" class="text-gray m-r-15"><i class="ti-pencil"></i></a>
+                                            <a class="text-gray" data-toggle="modal" 
+                                                data-target="#delete-modal"
+                                                data-url="{{ route('admins.courses.destroy', $course->id) }}">
+                                                <i class="ti-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -62,12 +68,19 @@
     </div>
 @endsection
 
+@include('admin.admin_layouts.delete_modal')
+
 @section('inline_scripts')
     <script src="{{ asset('assets/admin/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables/media/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/tables/data-table.js') }}"></script>
     <script>
         $(document).ready(function(){
+            $('#delete-modal').on('show.bs.modal', function(e){
+                var url = $(e.relatedTarget).data('url');
+                $('#form-delete').attr('action', url);
+            });
+            
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         })
     </script>

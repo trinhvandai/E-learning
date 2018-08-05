@@ -19,7 +19,7 @@ class Course extends Model
         'time',
         'level',
         'description',
-        'category',
+        'category_id',
     ];
 
     public $sortable = [
@@ -33,7 +33,7 @@ class Course extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
-    public function user()
+    public function users()
     {
         return $this->belongsToMany('App\Models\User', 'courses_users')
             ->using('App\Models\CoursesUser');
@@ -44,6 +44,19 @@ class Course extends Model
         $builder = Course::orderBy('updated_at', 'DESC');
         
         return $builder->paginate(self::PAGINATION);
+    }
+
+    /**
+     * Get the list of the joined people including teacher and student
+     *
+     * @param  int  $courseId
+     * @return int $users
+     */
+    public function getParticipantList($courseId)
+    {
+        $course = Course::findOrFail($courseId);
+
+        return $course->users;
     }
 
     public function findCourse($id)

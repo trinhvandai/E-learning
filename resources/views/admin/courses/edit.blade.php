@@ -5,6 +5,7 @@
 @endsection
 
 @section('inline_styles')
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/datatables/media/css/dataTables.bootstrap4.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin-custom.css') }}">
 @endsection
 
@@ -38,6 +39,7 @@
                                 <div class="form-group">
                                     {{ Form::label('name', __('name'), ['class' => 'control-label']) }}
                                     {{ Form::text('name', null, ['class' => 'form-control']) }}
+                                    <p class="error">{{ $errors->first('name') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -87,6 +89,7 @@
                                 <div class="form-group">
                                     {{ Form::label('lecture_count', __('lecture count'), ['class' => 'control-label']) }}
                                     {{ Form::text('lecture_count', null, ['class' => 'form-control']) }}
+                                    <p class="error">{{ $errors->first('lecture_count') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -95,6 +98,7 @@
                                 <div class="form-group">
                                     {{ Form::label('time', __('duration'), ['class' => 'control-label']) }}
                                     {{ Form::text('time', null, ['class' => 'form-control']) }}
+                                    <p class="error">{{ $errors->first('time') }}</p>
                                 </div>
                             </div>
                         </div> 
@@ -103,6 +107,7 @@
                                 {{ Form::label('level', __('level'), ['class' => 'control-label']) }}
                                 {{ Form::text('level', null, ['class' => 'form-control']) }}
                                 <small class="form-text" aria-readonly="true">{{ __('difficulty') }}</small>
+                                <p class="error">{{ $errors->first('level') }}</p>
                             </div>
                         </div>
                     </div>
@@ -130,8 +135,8 @@
                         <div class="col-md-4">
                             <div class="p-h-10">
                                 <div class="form-group">
-                                    <label class="control-label">{{ __('category') }}</label>
-                                    <p class="form-control" readonly>{{ $course->category->name }}</p>
+                                    {{ Form::label('category_id', __('category'), ['class' => 'control-label']) }}
+                                    {{ Form::select('category_id', $categories, $course->category->id, ['id' => 'category_id', 'class' => 'form-control']) }}
                                 </div>
                             </div>
                         </div>
@@ -160,12 +165,42 @@
                     </div>
                     {{ Form::close() }}
                 </div>
-            </div>   
+            </div>
+            <div class="card">
+                <div class="card-header border bottom">
+                    <h4 class="card-title">{{ __('joined people list') }}</h4>
+                </div>
+                <div class="card-body">
+                        <div class="table-overflow">
+                            <table id="dt-opt" class="table table-hover table-xl">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>{{ __('name') }}</th>
+                                        <th>{{ __('role') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($course->getParticipantList($course->id) as $person)
+                                        <tr id="specialize{{ $person->id }}">
+                                            <td>{{ $person->id }}</td>
+                                            <td>{{ $person->name }}</td>
+                                            <td>{{ \App\Models\User::$roles[$person->role] }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div> 
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 
 @section('inline_scripts')
+    <script src="{{ asset('assets/admin/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/media/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/tables/data-table.js') }}"></script>
     <script>
         $.fn.stars = function() {
             return $(this).each(function() {

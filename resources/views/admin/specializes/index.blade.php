@@ -69,7 +69,7 @@
     </div>
 @endsection
 
-@include('admin.specializes.delete_modal')
+@include('admin.admin_layouts.delete_modal')
 @include('admin.specializes.create_special_modal')
 
 @section('inline_scripts')
@@ -81,10 +81,6 @@
             @if (count($errors) > 0)
                 $('#create-specialize-modal').modal('show');
             @endif
-
-            $('#create-close').on('click', function(){
-                $('div.alert').css('display', 'none');
-            });
 
             $('#delete-modal').on('show.bs.modal', function(e){
                 var url = $(e.relatedTarget).data('url');

@@ -11,6 +11,11 @@ class OnlineClassroom extends Model
     
     protected $table = 'online_classrooms';
 
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
     public function users()
     {
         return $this->belongsToMany('App\Models\User', 'online_classrooms_users')
@@ -34,5 +39,32 @@ class OnlineClassroom extends Model
         }
 
         return null;
+    }
+
+    /**
+     * Get the list of the joined people including teacher and student
+     *
+     * @param  int  $classroomId
+     * @return int $users
+     */
+    public function getJoinedPeopleList($classroomId)
+    {
+        $classroom = OnlineClassroom::findOrFail($classroomId);
+
+        return $classroom->users;
+    }
+
+    public function updateOnlineClassroom($data, $id)
+    {
+        $result = OnlineClassroom::findOrFail($id)->update($data);
+
+        return $result;
+    }
+
+    public function deleteOnlineClassroom($id)
+    {
+        $result = OnlineClassroom::findOrFail($id)->delete();
+
+        return $result;
     }
 }

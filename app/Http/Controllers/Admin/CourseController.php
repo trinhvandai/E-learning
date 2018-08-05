@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Category;
 use App\Http\Requests\UpdateCourseForm;
 
 class CourseController extends Controller
@@ -74,8 +75,9 @@ class CourseController extends Controller
     public function edit($id)
     {
         $course = Course::findOrFail($id);
+        $categories = Category::pluck('name', 'id');
 
-        return view('admin.courses.edit', compact('course'));
+        return view('admin.courses.edit', compact('course', 'categories'));
     }
 
     /**
@@ -107,6 +109,14 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = $this->modelCourse->deleteCourse($id);
+
+        if ($result) {
+            flash(__('delete status') . $id)->success();
+        } else {
+            flash(__('something wrong'))->error();
+        }
+
+        return redirect(route('admins.courses.index'));
     }
 }
