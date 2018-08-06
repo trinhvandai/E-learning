@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('courses/{id}/lectures', 'LectureController@index');
     Route::post('courses/{id}/lectures/store', 'LectureController@store');
     Route::get('courses/{id}/lectures/{lectureId}', 'LectureController@show');
+    Route::post('courses/{id}/lectures/{lectureId}/update', 'LectureController@update');
+    Route::post('courses/{id}/lectures/{lectureId}/delete', 'LectureController@delete');
 });
 
 Route::post('districts', 'DistrictController@update');

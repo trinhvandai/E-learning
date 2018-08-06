@@ -189,5 +189,9 @@
     "link_video": "URL video: ",
     "add_lecture": "Add Lecture",
     "update existed classroom": "Update existed classroom",
-    "joined people list": "Joined people list"
+    "joined people list": "Joined people list",
+    "create_lecture_success": "Create lecture success, wait for approve from admin",
+    "update_lecture": " Update Lecture",
+    "update_lecture_success": "Update lecture successfully, wait for approve from admin",
+    "delete_lecture_success": "Delete lecture successfully"
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CoursesUser;
+use App\Http\Requests\CreateLectureRequest;
 use Embed\Embed;
 
 class LectureController extends Controller
@@ -49,9 +50,11 @@ class LectureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(CreateLectureRequest $request, $id)
     {
-        // TODO
+        $createdLecture = $this->modelCoursesUser->createLecture($request->all(), $id);
+
+        return response()->json($createdLecture);
     }
 
     /**
@@ -99,9 +102,11 @@ class LectureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateLectureRequest $request, $id)
     {
-        //
+        $updatedLecture = $this->modelCoursesUser->updateLecture($request->all(), $id);
+
+        return response()->json($updatedLecture);
     }
 
     /**
@@ -110,8 +115,8 @@ class LectureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        //
+        $this->modelCoursesUser->deleteLecture($request->all());
     }
 }
