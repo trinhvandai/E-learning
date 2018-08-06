@@ -2,7 +2,6 @@
     <div class="header-container">
         <div class="nav-logo">
             <a href="{{ route('admins.adminDashboard') }}">
-                <div class="logo logo-dark"></div>
                 <div class="logo logo-white"></div>
             </a>
         </div>

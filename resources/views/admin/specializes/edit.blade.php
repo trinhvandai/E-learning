@@ -21,7 +21,7 @@
                         <a href="{{ route('admins.specializes.index') }}" class="breadcrumb-item">
                             {{ __('specializes') }}
                         </a>
-                    <span class="breadcrumb-item active">{{ __('update existed specialize') }}</span>
+                    <span class="breadcrumb-item active">{{ $specialize->name }}</span>
                     </nav>
                 </div>
             </div>
@@ -36,11 +36,13 @@
                             <p class="alert alert-danger fix-alert">{{ $error }}</p>
                         @endforeach
                         
-                        {{ Form::text('name', null, ['class' => 'form-control m-b-20 m-r-15', 'id' => 'name']) }}
-                                
-                        {{ Form::text('teaching_grade', null, ['class' => 'form-control m-b-20 m-r-15', 'id' => 'teaching_grade']) }}
+                        <div class="form-group">
+                            {{ Form::text('name', null, ['class' => 'form-control m-b-20 m-r-15', 'id' => 'name', 'placeholder' => __('name')]) }}
+                                    
+                            {{ Form::text('teaching_grade', null, ['class' => 'form-control m-b-20 m-r-15', 'id' => 'teaching_grade', 'placeholder' => __('teaching_grade')]) }}
 
-                        {{ Form::submit(__('update'), ['class' => 'btn btn-gradient-success m-b-20']) }}
+                            {{ Form::submit(__('update'), ['class' => 'btn btn-gradient-success m-b-20']) }}
+                        </div>
                     {{ Form::close() }}
                 </div>
             </div>

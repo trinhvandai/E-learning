@@ -37,7 +37,7 @@
                                     <th>{{ __('classroom rate') }}</th>
                                     <th>{{ __('created person') }}</th>
                                     <th>{{ __('status') }}</th>
-                                    <th>{{ __('accept') }}</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,13 @@
                                         @endif
                                         <td><span class="badge badge-pill badge-warning">{{ __('pending') }}</span></td>
                                         <td class="text-center font-size-18">
-                                            <a href="#" class="text-gray m-r-15" placeholder="accept"><i class="ti-check-box"></i></a>
+                                            <a href="#" class="text-gray m-r-15" title="accept"><i class="ti-check-box"></i></a>
+                                            <a href="{{ route('admins.online_classrooms.edit', $onlineClassroom->id) }}" class="text-gray m-r-15"><i class="ti-pencil"></i></a>
+                                            <a class="text-gray" data-toggle="modal" 
+                                                data-target="#delete-modal"
+                                                data-url="{{ route('admins.online_classrooms.destroy', $onlineClassroom->id) }}">
+                                                <i class="ti-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -67,6 +73,8 @@
         </div>
     </div>
 @endsection
+
+@include('admin.admin_layouts.delete_modal')
 
 @section('inline_scripts')
     <script src="{{ asset('assets/admin/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
@@ -87,6 +95,12 @@
         }
         $(document).ready(function(){
             $('span.stars').stars();
+            
+            $('#delete-modal').on('show.bs.modal', function(e){
+                var url = $(e.relatedTarget).data('url');
+                $('#form-delete').attr('action', url);
+            });
+
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         })
     </script>
