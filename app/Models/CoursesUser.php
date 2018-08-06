@@ -31,4 +31,30 @@ class CoursesUser extends Pivot
     {
         return CoursesUser::where('course_id', $courseId)->where('user_id', $userId)->first();
     }
+
+    public function findLectureFollowCourse($id)
+    {
+        $builder = CoursesUser::where('course_id', $id)->whereNotNull('uploaded_file_title');
+        $courses = $builder->get();
+        $teacherId = [];
+
+        foreach ($courses as $course) {
+            if (\App\Models\User::find($course->user_id)->role === 1) {
+                array_push($teacherId, $course->user_id);
+            }
+        }
+
+        return $builder->whereIn('user_id', $teacherId)->get();
+    }
+
+    public function getTeacherFollowCourse($id)
+    {
+        $selectedCourse = \App\Models\Course::findOrFail($id);
+
+        foreach ($selectedCourse->user as $user) {
+            if ($user->role == 1) {
+                return $user;
+            }
+        }
+    }
 }

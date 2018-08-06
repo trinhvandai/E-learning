@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::post('notifications/changeReadStatus', 'NotificationController@changeReadStatus');
     Route::post('notifications/acceptCourseRequest', 'NotificationController@acceptCourseRequest');
     Route::post('notifications/deleteNotification', 'NotificationController@deleteNotification');
+
+    Route::get('courses/{id}/lectures', 'LectureController@index');
+    Route::post('courses/{id}/lectures/store', 'LectureController@store');
+    Route::get('courses/{id}/lectures/{lectureId}', 'LectureController@show');
 });
 
 Route::post('districts', 'DistrictController@update');

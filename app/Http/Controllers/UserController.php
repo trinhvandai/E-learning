@@ -44,12 +44,13 @@ class UserController extends Controller
         $selectProvince = \App\Models\Province::all()->pluck('name', 'id');
 
         $notifications = $this->modelNotification->getUnreadNotificationFollowUser($id);
-        $countUnreadNotifications = $notifications->count();
+        $countUnreadNotifications = $this->modelNotification->getUnreadNotificationFollowUser($id)->count();
 
         return view('users.show', compact([
             'selectedUser',
             'diffTime',
             'selectProvince',
+            '$notifications',
             'countUnreadNotifications',
         ]));
     }
