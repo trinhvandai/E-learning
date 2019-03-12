@@ -50,15 +50,16 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        if (!$user->active) {
-            $this->activationService->sendActivationMail($user);
-            auth()->logout();
+        // dd($user->active);
+        // if (!$user->active) {
+        //     $this->activationService->sendActivationMail($user);
+        //     auth()->logout();
             
-            return back()->with(
-                'warning',
-                __('not_been_actived')
-            );
-        }
+        //     return back()->with(
+        //         'warning',
+        //         __('not_been_actived')
+        //     );
+        // }
         
         return redirect()->intended($this->redirectPath());
     }

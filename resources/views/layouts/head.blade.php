@@ -7,18 +7,18 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="author" content="GrayGrids Team">
 
-    <link rel="shortcut icon" href="/assets/img/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.png">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/jasny-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/material-kit.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/line-icons/line-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extras/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extras/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/extras/owl.theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jasny-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/material-kit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/line-icons/line-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('extras/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('extras/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('extras/owl.theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 </head>

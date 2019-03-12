@@ -1,0 +1,17 @@
+{
+  "name": "RoadToSchool-css",
+  "version": "1.0.1",
+  "authors": [
+    "Hung Pham Hoang <hungph.dev.ict@gmail.com>"
+  ],
+  "description": "css for RoadToSchool project",
+  "main": "/",
+  "keywords": [
+    "fonticons"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/hungph-dev-ict/RoadToSchool-css.git",
+  "ignore": [
+    "README.md"
+  ]
+}

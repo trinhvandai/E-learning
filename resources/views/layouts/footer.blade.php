@@ -43,37 +43,37 @@
                         <h3 class="block-title">{{ __('premium_ads') }}</h3>
                         <ul class="featured-list">
                             <li>
-                                <img alt="" src="{{ asset('assets/img/featured/img1.jpg') }}">
+                                <img alt="" src="{{ asset('img/featured/img1.jpg') }}">
                                 <div class="hover">
                                     <a href="#"><span>$49</span></a>
                                 </div>
                             </li>
                             <li>
-                                <img alt="" src="{{ asset('assets/img/featured/img2.jpg') }}">
+                                <img alt="" src="{{ asset('img/featured/img2.jpg') }}">
                                 <div class="hover">
                                     <a href="#"><span>$49</span></a>
                                 </div>
                             </li>
                             <li>
-                                <img alt="" src="{{ asset('assets/img/featured/img3.jpg') }}">
+                                <img alt="" src="{{ asset('img/featured/img3.jpg') }}">
                                 <div class="hover">
                                     <a href="#"><span>$49</span></a>
                                 </div>
                             </li>
                             <li>
-                                <img alt="" src="{{ asset('assets/img/featured/img4.jpg') }}">
+                                <img alt="" src="{{ asset('img/featured/img4.jpg') }}">
                                 <div class="hover">
                                     <a href="#"><span>$49</span></a>
                                 </div>
                             </li>
                             <li>
-                                <img alt="" src="{{ asset('assets/img/featured/img5.jpg') }}">
+                                <img alt="" src="{{ asset('img/featured/img5.jpg') }}">
                                 <div class="hover">
                                     <a href="#"><span>$49</span></a>
                                 </div>
                             </li>
                             <li>
-                                <img alt="" src="{{ asset('assets/img/featured/img6.jpg') }}">
+                                <img alt="" src="{{ asset('img/featured/img6.jpg') }}">
                                 <div class="hover">
                                     <a href="#"><span>$49</span></a>
                                 </div>
@@ -110,20 +110,20 @@
     <i class="fa fa-angle-up"></i>
 </a>
 
-<script type="text/javascript" src="{{ asset('assets/js/jquery-min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/material.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/material-kit.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/jquery.parallax.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/wow.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/waypoints.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/jasny-bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/form-validator.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/contact-form-script.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/jquery.themepunch.revolution.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/jquery.themepunch.tools.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/material.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/material-kit.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.parallax.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/wow.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jasny-bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/form-validator.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/contact-form-script.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.themepunch.revolution.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.themepunch.tools.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-notify.js') }}"></script>
